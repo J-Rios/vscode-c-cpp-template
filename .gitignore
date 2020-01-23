@@ -2,4 +2,4 @@
 **/*.o
 **/**/*.o
 bin/*
-cases
+run

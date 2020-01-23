@@ -35,6 +35,7 @@ CXXFLAGS = -O0 -Wall -g $(LIBS)
 all: $(PROJECT)
 	mkdir -p ${BINDIR}
 	cp -a $(PROJECT) $(BINDIR)
+	mv $(PROJECT) run
 	mv *.o $(OBJDIR)/
 
 # Target: make rebuild (clean previously builds and build again)
