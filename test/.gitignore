@@ -1,0 +1,2 @@
+# Don't ignore this file (to allow git commit an "empty" directory)
+!.gitignore
