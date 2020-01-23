@@ -3,4 +3,4 @@ C/C++ example project skelleton to work and debug with Visual Studio Code using 
 
 ### Notes
 - Set/modify input arguments in "args" attribute of .vscode/launch.json file.
-- Set/modify make targets to run in "command" of .vscode/tasks.json file.
+- Set/modify make targets to run in "command" attribute of .vscode/tasks.json file.
