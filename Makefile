@@ -7,6 +7,7 @@ CXX = g++
 ######################################################################
 
 # Get actual date and setup output binary directory name
+_BINDIR = ./bin
 BINDIR = bin/$(shell date '+%Y_%m_%d_%H_%M_%S')
 
 # Specify sources and headers files
@@ -16,7 +17,7 @@ HEADS = $(shell find ./include -type f -name *.h)
 HEADS += $(shell find ./include -type f -name *.hpp)
 
 # Specify directory where store compile objects files
-OBJDIR = ./obj
+OBJDIR = ./build
 
 # Get objects files from sources and output object
 _OBJS = $(SRCS:.cpp=.o)
@@ -38,13 +39,17 @@ all: $(PROJECT)
 	mv $(PROJECT) run
 	mv *.o $(OBJDIR)/
 
-# Target: make rebuild (clean previously builds and build again)
-rebuild: clean all
-
 # Target: make clean (remove all previously builds)
 clean:
 	rm -f $(OBJDIR)/*.o
-	rm -f $(PROJECT)
+	rm -f run
+
+# Target: make cleanall clean previously builds including output bins)
+cleanall: clean
+	rm -rf $(_BINDIR)/*
+
+# Target: make rebuild (clean previously builds and build again)
+rebuild: clean all
 
 # Target: check (custom target to check build variables)
 check:
