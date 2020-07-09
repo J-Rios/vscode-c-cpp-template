@@ -1,0 +1,23 @@
+
+# Check if compilers are installed
+x86_64-w64-mingw32-gcc -v &> /dev/null
+if [[ $? != 0 ]]; then
+    echo "Error: Mingw (x86_64-w64-mingw32-gcc) for windows cross-compile not found."
+    echo "Please install it to build for windows:"
+    echo "sudo apt-get -y install mingw-w64"
+    echo ""
+    exit 1
+fi
+x86_64-w64-mingw32-g++ -v &> /dev/null
+if [[ $? != 0 ]]; then
+    echo "Error: Mingw (x86_64-w64-mingw32-g++) for windows cross-compile not found."
+    echo "Please install it to build for windows:"
+    echo "sudo apt-get -y install mingw-w64"
+    echo ""
+    exit 1
+fi
+
+# Let's build
+make CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ OUT=cases.exe
+
+exit 0

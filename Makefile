@@ -1,6 +1,6 @@
 
-# Specify project name and compilers
-PROJECT = cases
+# Specify project name and default compilers
+OUT = cases
 CC = gcc
 CXX = g++
 
@@ -33,10 +33,10 @@ CXXFLAGS = -O0 -Wall -g $(LIBS)
 ######################################################################
 
 # Target: make all (build project generating output directory)
-all: $(PROJECT)
+all: $(OUT)
 	mkdir -p ${BINDIR}
-	cp -a $(PROJECT) $(BINDIR)
-	mv $(PROJECT) run
+	cp -a $(OUT) $(BINDIR)
+	mv $(OUT) run
 	mv *.o $(OBJDIR)/
 
 # Target: make clean (remove all previously builds)
@@ -62,8 +62,8 @@ check:
 
 ######################################################################
 
-# Target: make <PROJECT> (build project)
-$(PROJECT): $(OBJS) $(HEADS)
+# Target: make <OUT> (build project)
+$(OUT): $(OBJS) $(HEADS)
 	$(CXX) $(CXXFLAGS) -o $@ $(SRCS)
 
 # Target for generate object file of each .c file
