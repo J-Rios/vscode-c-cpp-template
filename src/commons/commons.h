@@ -1,9 +1,11 @@
-/**************************************************************************************************/
-// File: commons.h
-// Description: Commons functions file
-// Created on: 22 jan. 2020
-// Last modified date: 22 jan. 2020
-// Version: 1.0.0
+/**
+ * @file    commons.h
+ * @author  Jose Miguel Rios Rubio
+ * @date    2020.01.22
+ * @version 1.0.0
+ * @brief   Commons functions file.
+ */
+
 /**************************************************************************************************/
 
 /* Include Guard */

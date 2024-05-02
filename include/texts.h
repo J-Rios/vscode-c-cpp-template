@@ -1,9 +1,11 @@
-/**************************************************************************************************/
-// File: texts.h
-// Description: Project texts defines file
-// Created on: 22 jan. 2020
-// Last modified date: 22 jan. 2020
-// Version: 1.0.0
+/**
+ * @file    texts.h
+ * @author  Jose Miguel Rios Rubio
+ * @date    2020.01.22
+ * @version 1.0.0
+ * @brief   Project texts defines file.
+ */
+
 /**************************************************************************************************/
 
 /* Include Guard */
@@ -14,18 +16,19 @@
 /**************************************************************************************************/
 
 // Tool usage info
-#define TEXT_USAGE \
+static const char TEXT_USAGE[] =
     "Usage:\n" \
     "    cases [tolower/toupper] string\n" \
     "Examples:\n" \
     "    cases tolower \"TURN all CHaRacter OF This texT TO LOWER.\"\n" \
-    "    cases toupper \"TURN all CHaRacter OF This texT TO UPPER.\"\n"
+    "    cases toupper \"TURN all CHaRacter OF This texT TO UPPER.\"\n";
 
 // Project tool needs an expected argument to run
-#define TEXT_NEEDS_ARGVS "You need to specify the operation and the string text to convert it."
+static const char TEXT_NEEDS_ARGVS[] =
+    "You need to specify the operation and the string text to convert it.";
 
 // An unexpected operation has been provided
-#define TEXT_INVALID_OP "Invalid operation."
+static const char TEXT_INVALID_OP[] = "Invalid operation.";
 
 /**************************************************************************************************/
 
