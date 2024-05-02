@@ -1,0 +1,31 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "configure_base",
+            "description": "Common configurations for all Presets that inherit from it",
+            "hidden": true,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "installDir": "${sourceDir}/bin"
+        },
+        {
+            "displayName": "DEBUG",
+            "name": "debug",
+            "description": "Build project as Debug",
+            "inherits": "configure_base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "displayName": "RELEASE",
+            "name": "release",
+            "description": "build project as Release",
+            "inherits": "configure_base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ]
+}
