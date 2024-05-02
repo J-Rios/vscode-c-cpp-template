@@ -1,4 +1,4 @@
-# vscode_c_skelly
+# vscode-c-cpp-template
 
 A basic C/C++ template CMake/Makefile project to work and debug with Visual Studio Code.
 
