@@ -2,7 +2,7 @@
 
 A basic C/C++ template CMake/Makefile project to work and debug with Visual Studio Code.
 
-The **"master"** branch contains CMake project. In case you want to use a Makefile project approach, use the **"makefile-project"** branch.
+The **"main"** branch contains CMake project. In case you want to use a Makefile project approach, use the **"makefile-project"** branch.
 
 ## Notes
 
