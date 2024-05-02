@@ -1,0 +1,7 @@
+{
+    // Vscode copy to clipboard without format
+    "editor.copyWithSyntaxHighlighting": false,
+
+    // Vscode max number of characters on line vertical lines
+    "editor.rulers": [ 100 ],
+}
