@@ -1,8 +1,17 @@
 # vscode_c_skelly
-C/C++ example project skelleton to work and debug with Visual Studio Code using a custom Makefile.
 
-### Notes
-- Set/modify input arguments in "args" attribute of .vscode/launch.json file.
-- Set/modify make targets to run in "command" attribute of .vscode/tasks.json file.
-- To use it in Windows, you need a linux enviorment (for example WSL), set it as default terminal for vscode and also install "Remote - WSL" addon and re-open project directory in the remote WSL setup window (left-bottom green button to change it), then install C/C++ addon to WSL.
-- Packages needed: build-essential, binutils, gcc, g++, make, gdb.
+A basic C/C++ template CMake/Makefile project to work and debug with Visual Studio Code.
+
+The **"master"** branch contains CMake project. In case you want to use a Makefile project approach, use the **"makefile-project"** branch.
+
+## Notes
+
+- Launch **"Build & Compile"** by pressing **F7** key.
+
+- Launch **"Run & Debug"** by pressing **Ctrl+F5** key.
+
+- Modify the project build setup by modifying the *CMakeLists.txt* file.
+
+- The project is setup to automatically download required project dependencies (as external libraries or tools) by CMake FetchContent feature. Setup project dependencies in the **"CMakeDeps.cmake"** file. The dependencies will be download and stored in the **"deps/"** directory.
+
+- Packages needed in Linux: build-essential, binutils, gcc, g++, make, gdb.
