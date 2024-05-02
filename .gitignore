@@ -1,5 +1,45 @@
+
+# Editor Related Files & Directories
+**/.vscode/
+
+# CMake Related Files & Directories
+**/CMakeFiles/
+**/CMakeCache.txt
+**/CMakeLists.txt.*
+**/*.cmake
+**/Makefile
+
+# Python Related Files & Directories
+**/__pycache__/
+**/*.pyc
+**/.venv/
+**/.eggs/
+**/*.egg-info/
+
+# Project Directories
+bin/
+build/
+deps/
+
+# Built Files
+**/*.a
 **/*.o
-**/*.exe
-build/*
-bin/*
-run
+**/*.bin
+**/*.elf
+**/*.hex
+**/*.map
+**/*.symtab
+**/*.ignore
+
+# Other Files
+**/~*
+**/.~*
+**/*.bkp
+**/*.bmp
+**/*.jpg
+**/*.pdf
+**/*.png
+**/*.log
+**/*.json.*
+**/*.pkl
+**/*.dtmp
