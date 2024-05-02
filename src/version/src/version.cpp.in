@@ -1,0 +1,27 @@
+/**
+ * @file    version.cpp
+ * @author  Jose Miguel Rios Rubio
+ * @date    2024.05.02
+ * @version 1.0.0
+ * @brief   Versioning file to be populate from build system.
+ */
+
+/*****************************************************************************/
+
+/* Libraries */
+
+// Header Interface
+#include "version.h"
+
+/*****************************************************************************/
+
+/* FW Application Version */
+
+const int VERSION_X = @VERSION_X@;
+const int VERSION_Y = @VERSION_Y@;
+const int VERSION_Z = @VERSION_Z@;
+const bool VERSION_DEV = @VERSION_DEV@;
+const char* const BUILD_DATE = __DATE__;
+const char* const BUILD_TIME = __TIME__;
+
+/*****************************************************************************/

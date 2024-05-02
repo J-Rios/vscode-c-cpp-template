@@ -1,20 +1,25 @@
-/**************************************************************************************************/
-// File: main.c
-// Description: Project main source. Turn string cases to lower or upper
-// Created on: 22 jan. 2020
-// Last modified date: 22 jan. 2020
-// Version: 1.0.0
+/**
+ * @file    main.cpp
+ * @author  Jose Miguel Rios Rubio
+ * @date    2020.01.22
+ * @version 1.0.0
+ * @brief   Project main source. Turn string cases to lower or upper.
+ */
+
 /**************************************************************************************************/
 
 /* Libraries */
 
+// Standard C/C++ Libraries
 #include <stdio.h>
 #include <stdint.h>
 #include <inttypes.h>
 #include <string.h>
 
+// Project Libraries
 #include "commons.h"
 #include "texts.h"
+#include "version.h"
 
 /**************************************************************************************************/
 
@@ -28,7 +33,7 @@
 
 /**************************************************************************************************/
 
-/* Functions Prototypes */
+/* Function Prototypes */
 
 // Turn the given text into lower/upper
 int8_t convert_string(const char* operation, char* str_text, const size_t str_text_size);
@@ -42,11 +47,17 @@ int main(int argc, char *argv[])
     char operation[MAX_LEN_OPERATION];
     char str_text[MAX_LEN_INPUT_STR];
 
+    // Show Software Version
+    printf("\ncases v%d.%d.%d", VERSION_X, VERSION_Y, VERSION_Z);
+    if (VERSION_DEV)
+    {   printf("-dev");   }
+    printf(" (%s %s)\n\n", BUILD_DATE, BUILD_TIME);
+
     // Check for expected number of arguments and shows usage info if not
     if(argc <= 2)
     {
-        println(TEXT_NEEDS_ARGVS);
-        println(TEXT_USAGE);
+        printf("%s\n", TEXT_NEEDS_ARGVS);
+        printf("%s\n", TEXT_USAGE);
         return RC_BAD;
     }
 
@@ -57,29 +68,32 @@ int main(int argc, char *argv[])
     // Check provided operation
     if(convert_string(operation, str_text, strlen(str_text)) != RC_OK)
     {
-        println(TEXT_INVALID_OP);
-        println(TEXT_USAGE);
+        printf("%s\n", TEXT_INVALID_OP);
+        printf("%s\n", TEXT_USAGE);
         return RC_BAD;
     }
 
     // Show result
-    println(str_text);
+    printf("%s\n", str_text);
 
     return RC_OK;
 }
 
 /**************************************************************************************************/
 
-/* Auxiliar Functions */
+/* Auxiliary Functions */
 
 // Turn the given text into lower/upper
 int8_t convert_string(const char* operation, char* str_text, const size_t str_text_size)
 {
     if(strcmp(operation, "tolower") == 0)
-        cstr_lower(str_text, str_text_size);
+    {   cstr_lower(str_text, str_text_size);   }
     else if(strcmp(operation, "toupper") == 0)
-        cstr_upper(str_text, str_text_size);
+    {   cstr_upper(str_text, str_text_size);   }
     else
-        return RC_BAD;
+    {   return RC_BAD;   }
+
     return RC_OK;
 }
+
+/**************************************************************************************************/

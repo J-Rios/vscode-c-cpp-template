@@ -39,10 +39,6 @@ extern "C" {
 #define RC_OK     0
 #define RC_BAD    1
 
-// Macros
-#define print(x) do { printf("%s", x); } while(0)
-#define println(x) do { printf("%s", x); printf("\n"); } while(0)
-
 /**************************************************************************************************/
 
 /* Functions */
