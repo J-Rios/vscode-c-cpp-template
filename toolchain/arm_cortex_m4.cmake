@@ -1,7 +1,7 @@
 
 ### CMake Toolchain Configuration Setup File ###
 
-message("\n\nToolchain: ARM Cortex-M4")
+message("Toolchain: ARM Cortex-M4")
 
 # Set Custom Linker Script
 set(LINKER_SCRIPT "")

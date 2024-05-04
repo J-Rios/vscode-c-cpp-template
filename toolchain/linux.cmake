@@ -1,7 +1,7 @@
 
 ### CMake Toolchain Configuration Setup File ###
 
-message("\n\nToolchain: Linux")
+message("Toolchain: Linux")
 
 # Toolchain Compiler Tools
 set(TOOLCHAIN_PREFIX "")
