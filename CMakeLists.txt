@@ -30,7 +30,8 @@ set(DIR_DOC ${CMAKE_SOURCE_DIR}/doc)
 set(DIR_INC ${CMAKE_SOURCE_DIR}/include)
 set(DIR_SRC ${CMAKE_SOURCE_DIR}/src)
 set(DIR_LIB ${CMAKE_SOURCE_DIR}/lib)
-set(DIR_CMAKE_TOOLCHAIN ${CMAKE_SOURCE_DIR}/cmake)
+set(DIR_TOOLS ${CMAKE_SOURCE_DIR}/tools)
+set(DIR_CMAKE_TOOLCHAIN ${CMAKE_SOURCE_DIR}/toolchain)
 set(DIR_DEPS_LIB ${CMAKE_SOURCE_DIR}/deps/libraries)
 set(DIR_DEPS_TOOL ${CMAKE_SOURCE_DIR}/deps/tools)
 
@@ -82,6 +83,9 @@ else()
     message("Version: Standard")
 endif(VERSION_DEV)
 
+# Set Project output file name
+set(PROJECT_OUT ${PROJECT_NAME}_${VERSION})
+
 ####################################################################################################
 
 ### Compile Configuration ###
@@ -112,7 +116,7 @@ if(CMAKE_BUILD_TYPE MATCHES Release)
 endif()
 
 # Include Toolchain Specific Configuration
-include(${DIR_CMAKE_TOOLCHAIN}/CMakeToolchain_Linux.cmake)
+include(${DIR_CMAKE_TOOLCHAIN}/linux.cmake)
 
 set(CMAKE_C_FLAGS "${PLATFORM_C_FLAGS} ${C_WARNING_FLAGS} ${PLATFORM_FLAGS_LINKER}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c17")
@@ -130,9 +134,6 @@ include(CMakeDeps.cmake)
 ####################################################################################################
 
 ### Directories and Sources To Use ###
-
-# Set Project output file name
-set(PROJECT_OUT ${PROJECT_NAME}_${VERSION})
 
 # Sources files
 set(SRC_FILES ${STARTUP_FILE} ${DIR_SRC}/main.cpp)
@@ -193,24 +194,24 @@ add_dependencies(${PROJECT_OUT}.elf
 
 ### Post-Build Targets ###
 
-# Binary file build (file.bin)
-add_custom_target(${PROJECT_OUT}.bin ALL
-    COMMAND ${TOOLCHAIN_PREFIX}objcopy -O binary ${PROJECT_OUT}.elf ${PROJECT_OUT}.bin
-    DEPENDS ${PROJECT_OUT}.elf)
-
 # Symbols Table list file build (file.symtab)
 add_custom_target(${PROJECT_OUT}.symtab ALL
     COMMAND ${TOOLCHAIN_PREFIX}nm -n -l -a ${PROJECT_OUT}.elf >> ${PROJECT_OUT}.symtab
     DEPENDS ${PROJECT_OUT}.elf)
 
-# Show Build result memory size
-add_custom_target(size_calculation ALL
-    COMMAND ${TOOLCHAIN_PREFIX}size ${PROJECT_OUT}.elf
-    DEPENDS ${PROJECT_OUT}.elf)
+# Binary file build (file.bin)
+add_custom_target(${PROJECT_OUT}.bin ALL
+COMMAND ${TOOLCHAIN_PREFIX}objcopy -O binary ${PROJECT_OUT}.elf ${PROJECT_OUT}.bin
+DEPENDS ${PROJECT_OUT}.elf)
 
 # Run Memory Usage Check Analysis Script
-#add_custom_target(memory_usage_analysis ALL
-#    COMMAND ${DIR_TOOLS}/memory_check ${DIR_BUILD} ${DIR_BUILD}/${PROJECT_OUT}.elf
-#    DEPENDS ${PROJECT_OUT}.elf)
+add_custom_target(memory_usage_analysis ALL
+    COMMAND ${DIR_TOOLS}/memory_check ${DIR_BUILD} ${DIR_BUILD}/${PROJECT_OUT}.elf
+    DEPENDS ${PROJECT_OUT}.elf)
+
+# Show Build result memory size
+add_custom_target(show_shize ALL
+    COMMAND ${TOOLCHAIN_PREFIX}size ${PROJECT_OUT}.elf
+    DEPENDS memory_usage_analysis)
 
 ####################################################################################################
