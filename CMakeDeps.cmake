@@ -13,32 +13,31 @@ include(FetchContent)
 
 ### Libraries To Fetch ###
 
-# SQueue
+# Example Library
 #FetchContent_Declare(
-#    squeue
-#    GIT_REPOSITORY ${CNI_LIBS}/generic/containers/squeue.git
+#    examplelib
+#    GIT_REPOSITORY https://github.com/J-Rios/examplelib
 #    GIT_TAG v1.0.0
-#    SOURCE_DIR ${DIR_LIBDEP}/squeue
+#    SOURCE_DIR ${DIR_LIBDEP}/examplelib
 #)
-#FetchContent_MakeAvailable(squeue)
+#FetchContent_MakeAvailable(examplelib)
 
 #
 # Add Here More Libraries...
 # ...
 
-
 ####################################################################################################
 
 ### Tools To Fetch ###
 
-# ELF File Analysis Tool
-FetchContent_Declare(
-    elfcheck
-    GIT_REPOSITORY https://github.com/J-Rios/elfcheck
-    GIT_TAG v1.0.0
-    SOURCE_DIR ${DIR_DEPS_TOOL}/elfcheck
-)
-FetchContent_MakeAvailable(elfcheck)
+# Example Tool
+#FetchContent_Declare(
+#    exampletool
+#    GIT_REPOSITORY https://github.com/J-Rios/exampletool
+#    GIT_TAG v1.0.0
+#    SOURCE_DIR ${DIR_DEPS_TOOL}/exampletool
+#)
+#FetchContent_MakeAvailable(exampletool)
 
 #
 # Add Here More Tools...
