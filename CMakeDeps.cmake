@@ -9,6 +9,10 @@ message("Get/Update project dependencies, please wait...")
 
 include(FetchContent)
 
+# Setup Project Dependecies Fetch Path variables
+set(DIR_DEPS_LIB ${CMAKE_SOURCE_DIR}/deps/libraries)
+set(DIR_DEPS_TOOL ${CMAKE_SOURCE_DIR}/deps/tools)
+
 ####################################################################################################
 
 ### Libraries To Fetch ###

@@ -2,6 +2,13 @@
 
 ####################################################################################################
 
+### Project Library Dependencies ###
+
+# Run CMakeDeps to setup (get/update) project dependencies (libraries, tools, etc)
+include(CMakeDeps.cmake)
+
+####################################################################################################
+
 ### CMake General Configuration ###
 
 cmake_minimum_required(VERSION 3.29)
@@ -32,8 +39,6 @@ set(DIR_SRC ${CMAKE_SOURCE_DIR}/src)
 set(DIR_LIB ${CMAKE_SOURCE_DIR}/lib)
 set(DIR_TOOLS ${CMAKE_SOURCE_DIR}/tools)
 set(DIR_CMAKE_TOOLCHAIN ${CMAKE_SOURCE_DIR}/toolchain)
-set(DIR_DEPS_LIB ${CMAKE_SOURCE_DIR}/deps/libraries)
-set(DIR_DEPS_TOOL ${CMAKE_SOURCE_DIR}/deps/tools)
 
 # Set variables for Programs
 #set(PYTHON python3)
@@ -91,10 +96,10 @@ set(PROJECT_OUT ${PROJECT_NAME}_${VERSION})
 ### Compile Configuration ###
 
 # Common Warning Flags
-set(COMMON_WARNING_FLAGS "-Wall -Wextra -Werror -Wpedantic -pedantic -Wshadow")
-set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wcast-align -Wconversion -Wparentheses")
-set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wmissing-declarations -Wredundant-decls")
-set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wimplicit-fallthrough=2")
+set(COMMON_WARNING_FLAGS "-Wall -Wextra -Werror -Wpedantic -pedantic")
+set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wshadow -Wconversion -Wparentheses")
+set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wcast-align -Wmissing-declarations")
+set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wredundant-decls -Wimplicit-fallthrough=2")
 set(COMMON_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -fdump-tree-optimized -fstack-usage")
 
 # C Warning Flags
@@ -103,7 +108,7 @@ set(C_WARNING_FLAGS "${C_WARNING_FLAGS} -Wmissing-prototypes -Wstrict-prototypes
 
 # C++ Warning Flags
 set(CXX_WARNING_FLAGS "${COMMON_WARNING_FLAGS}")
-set(CXX_WARNING_FLAGS "${COMMON_WARNING_FLAGS} -Wconditionally-supported -Wno-variadic-macros")
+set(CXX_WARNING_FLAGS "${CXX_WARNING_FLAGS} -Wconditionally-supported -Wno-variadic-macros")
 
 # Optimization Flags
 set(OPTIMIZATION_FLAGS "-ffunction-sections -fdata-sections -static")
@@ -118,18 +123,13 @@ endif()
 # Include Toolchain Specific Configuration
 include(${DIR_CMAKE_TOOLCHAIN}/linux.cmake)
 
-set(CMAKE_C_FLAGS "${PLATFORM_C_FLAGS} ${C_WARNING_FLAGS} ${PLATFORM_FLAGS_LINKER}")
+set(CMAKE_C_FLAGS "${PLATFORM_C_FLAGS} ${CMAKE_C_FLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_WARNING_FLAGS} ${PLATFORM_FLAGS_LINKER}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c17")
 
-set(CMAKE_CXX_FLAGS "${PLATFORM_CXX_FLAGS} ${CXX_WARNING_FLAGS} ${PLATFORM_FLAGS_LINKER}")
+set(CMAKE_CXX_FLAGS "${PLATFORM_CXX_FLAGS} ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX_WARNING_FLAGS} ${PLATFORM_FLAGS_LINKER}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
-
-####################################################################################################
-
-### Project Library Dependencies ###
-
-# Run CMakeDeps to setup (get/update) project dependencies (libraries, tools, etc)
-include(CMakeDeps.cmake)
 
 ####################################################################################################
 
@@ -201,8 +201,8 @@ add_custom_target(${PROJECT_OUT}.symtab ALL
 
 # Binary file build (file.bin)
 add_custom_target(${PROJECT_OUT}.bin ALL
-COMMAND ${TOOLCHAIN_PREFIX}objcopy -O binary ${PROJECT_OUT}.elf ${PROJECT_OUT}.bin
-DEPENDS ${PROJECT_OUT}.elf)
+    COMMAND ${TOOLCHAIN_PREFIX}objcopy -O binary ${PROJECT_OUT}.elf ${PROJECT_OUT}.bin
+    DEPENDS ${PROJECT_OUT}.elf)
 
 # Run Memory Usage Check Analysis Script
 add_custom_target(memory_usage_analysis ALL

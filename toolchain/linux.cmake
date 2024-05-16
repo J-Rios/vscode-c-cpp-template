@@ -5,9 +5,6 @@ message("Toolchain: Linux")
 
 # Toolchain Compiler Tools
 set(TOOLCHAIN_PREFIX "")
-set(CMAKE_C_COMPILER "${TOOLCHAIN_PREFIX}gcc")
-set(CMAKE_CXX_COMPILER "${TOOLCHAIN_PREFIX}g++")
-set(CMAKE_AR "${TOOLCHAIN_PREFIX}gcc-ar")
 
 # Platform Common Flags
 set(PLATFORM_COMMON_FLAGS "")
